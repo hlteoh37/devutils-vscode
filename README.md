@@ -39,7 +39,9 @@ ext install hlteoh37.devutils-vscode
 
 ## Pro
 
-Unlock all 44 tools for a one-time $5 payment. [Get Pro](https://buy.stripe.com/bJe00jgjugyr5Fi5cv9Zm05)
+15 tools are free forever. Unlock all 29 Pro tools by entering a license key in Settings > DevUtils.
+
+[Get a Pro license](https://buymeacoffee.com/gl89tu25lp)
 
 ## Support
 

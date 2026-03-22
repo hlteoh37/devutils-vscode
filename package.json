@@ -92,6 +92,16 @@
           "name": "Tools"
         }
       ]
+    },
+    "configuration": {
+      "title": "DevUtils",
+      "properties": {
+        "devutils.licenseKey": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "License key to unlock 29 Pro tools. [Get a Pro license](https://buymeacoffee.com/gl89tu25lp)"
+        }
+      }
     }
   },
   "scripts": {
@@ -101,8 +111,12 @@
     "publish": "npx @vscode/vsce publish --no-dependencies"
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
+    "@types/node": "^18.19.130",
     "@types/vscode": "^1.80.0",
-    "typescript": "^5.0.0"
+    "@vscode/vsce": "^2.15.0",
+    "cheerio": "^1.0.0-rc.12",
+    "typescript": "^5.4.5",
+    "undici": "^6.21.1",
+    "vsce": "^2.15.0"
   }
 }

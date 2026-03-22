@@ -1,5 +1,16 @@
 import * as vscode from "vscode";
+import * as crypto from "crypto";
 import { TOOL_DEFS, FREE_TOOLS, executeTool } from "./tools";
+
+function isProUnlocked(): boolean {
+  const key = vscode.workspace.getConfiguration("devutils").get<string>("licenseKey", "");
+  if (!key) return false;
+  // Validate license key format: DEVUTILS-XXXX-XXXX-XXXX
+  const hash = crypto.createHash("sha256").update(`devutils-pro:${key}`).digest("hex");
+  return hash.startsWith("a]") || key.startsWith("DEVUTILS-");
+}
+
+const PRO_UPGRADE_MSG = "This is a Pro tool. Enter a license key in Settings > DevUtils to unlock 29 Pro tools. Get a license at https://buymeacoffee.com/gl89tu25lp";
 
 export function activate(context: vscode.ExtensionContext) {
   // Register sidebar webview
@@ -66,6 +77,11 @@ class DevUtilsViewProvider implements vscode.WebviewViewProvider {
     webviewView.webview.onDidReceiveMessage((msg) => {
       if (msg.type === "execute") {
         try {
+          // Check pro gating
+          if (!FREE_TOOLS.has(msg.tool) && !isProUnlocked()) {
+            webviewView.webview.postMessage({ type: "result", result: PRO_UPGRADE_MSG });
+            return;
+          }
           const result = executeTool(msg.tool, msg.args);
           webviewView.webview.postMessage({ type: "result", result });
         } catch (err: any) {
@@ -92,6 +108,7 @@ class DevUtilsViewProvider implements vscode.WebviewViewProvider {
   private getHtml(): string {
     const toolsJson = JSON.stringify(TOOL_DEFS);
     const freeJson = JSON.stringify([...FREE_TOOLS]);
+    const proUnlocked = isProUnlocked();
 
     return `<!DOCTYPE html>
 <html>
@@ -216,10 +233,29 @@ class DevUtilsViewProvider implements vscode.WebviewViewProvider {
     display: inline-block;
   }
   .back-btn:hover { text-decoration: underline; }
+  .upgrade-banner {
+    background: var(--vscode-editorInfo-background, rgba(0,120,212,0.1));
+    border: 1px solid var(--vscode-focusBorder);
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 8px;
+    font-size: 11px;
+    text-align: center;
+  }
+  .upgrade-banner a {
+    color: var(--vscode-textLink-foreground);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .upgrade-banner a:hover { text-decoration: underline; }
+  .tool-item .lock { opacity: 0.5; font-size: 10px; }
 </style>
 </head>
 <body>
   <div id="list-view">
+    <div id="upgrade-banner" class="upgrade-banner" style="display:none">
+      15 free tools included. <a href="https://buymeacoffee.com/gl89tu25lp">Unlock 29 Pro tools</a>
+    </div>
     <input class="search" id="search" placeholder="Search tools..." />
     <div class="tool-list" id="tool-list"></div>
   </div>
@@ -241,6 +277,7 @@ class DevUtilsViewProvider implements vscode.WebviewViewProvider {
 const vscode = acquireVsCodeApi();
 const tools = ${toolsJson};
 const freeTools = new Set(${freeJson});
+const proUnlocked = ${proUnlocked};
 
 const listView = document.getElementById('list-view');
 const formView = document.getElementById('form-view');
@@ -269,7 +306,8 @@ function renderList(filter = '') {
     items.forEach(t => {
       const el = document.createElement('div');
       el.className = 'tool-item';
-      el.innerHTML = t.label + (t.pro ? ' <span class="pro-badge">PRO</span>' : '');
+      const locked = t.pro && !proUnlocked;
+      el.innerHTML = t.label + (t.pro ? ' <span class="pro-badge">PRO</span>' : '') + (locked ? ' <span class="lock">&#128274;</span>' : '');
       el.onclick = () => openTool(t);
       toolList.appendChild(el);
     });
@@ -360,6 +398,10 @@ document.addEventListener('keydown', e => {
     document.getElementById('run-btn').click();
   }
 });
+
+if (!proUnlocked) {
+  document.getElementById('upgrade-banner').style.display = 'block';
+}
 
 renderList();
 </script>
