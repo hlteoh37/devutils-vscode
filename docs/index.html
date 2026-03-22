@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevUtils for VS Code — 44 Developer Utilities</title>
+<meta name="description" content="UUID, hash, base64, JWT, JSON, regex, timestamp, color converter and 36 more developer tools — right inside VS Code.">
+<style>
+  :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #e6edf3; --muted: #8b949e; --blue: #58a6ff; --green: #3fb950; --purple: #bc8cff; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+  h1 { font-size: 2.5em; margin-bottom: 12px; }
+  h1 span { color: var(--blue); }
+  .subtitle { color: var(--muted); font-size: 1.2em; margin-bottom: 32px; }
+  .badges { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+  .badges img { height: 22px; }
+  .cta-row { display: flex; gap: 12px; margin-bottom: 48px; flex-wrap: wrap; }
+  .cta { display: inline-block; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1em; }
+  .cta-primary { background: var(--green); color: #000; }
+  .cta-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+  .cta:hover { opacity: 0.9; }
+  .install-box { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin-bottom: 48px; font-family: 'Fira Code', monospace; font-size: 1em; color: var(--green); }
+  .section { margin-bottom: 48px; }
+  .section h2 { font-size: 1.5em; margin-bottom: 16px; }
+  .tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .tiers { grid-template-columns: 1fr; } }
+  .tier { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 24px; }
+  .tier h3 { font-size: 1.2em; margin-bottom: 4px; }
+  .tier .price { color: var(--muted); margin-bottom: 12px; }
+  .tier ul { list-style: none; padding: 0; }
+  .tier ul li { padding: 3px 0; color: var(--muted); font-size: 0.9em; }
+  .tier ul li::before { content: "✓ "; color: var(--green); }
+  .tier.pro { border-color: var(--purple); }
+  .tier.pro h3 { color: var(--purple); }
+  .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+  .tool-chip { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; font-size: 0.85em; }
+  .tool-chip.pro { opacity: 0.6; }
+  .tool-chip .badge { font-size: 0.7em; color: var(--purple); font-weight: bold; }
+  .footer { text-align: center; color: var(--muted); font-size: 0.85em; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .footer a { color: var(--blue); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1><span>DevUtils</span> for VS Code</h1>
+  <p class="subtitle">44 developer utilities right inside your editor. No context switching.</p>
+
+  <div class="badges">
+    <img src="https://img.shields.io/visual-studio-marketplace/v/hlteoh37.devutils-vscode?style=flat-square" alt="version">
+    <img src="https://img.shields.io/visual-studio-marketplace/i/hlteoh37.devutils-vscode?style=flat-square" alt="installs">
+  </div>
+
+  <div class="cta-row">
+    <a class="cta cta-primary" href="https://buy.stripe.com/bJe00jgjugyr5Fi5cv9Zm05">Get Pro — $5 one-time</a>
+    <a class="cta cta-secondary" href="https://github.com/hlteoh37/devutils-vscode">GitHub</a>
+    <a class="cta cta-secondary" href="https://marketplace.visualstudio.com/items?itemName=hlteoh37.devutils-vscode">VS Code Marketplace</a>
+  </div>
+
+  <div class="install-box">ext install hlteoh37.devutils-vscode</div>
+
+  <div class="section">
+    <h2>Free vs Pro</h2>
+    <div class="tiers">
+      <div class="tier">
+        <h3>Free</h3>
+        <p class="price">$0 — 15 tools</p>
+        <ul>
+          <li>UUID Generator</li>
+          <li>Hash (MD5, SHA1, SHA256)</li>
+          <li>Base64 Encode/Decode</li>
+          <li>Timestamp Convert</li>
+          <li>JWT Decode</li>
+          <li>Random String</li>
+          <li>URL Encode/Decode</li>
+          <li>JSON Format/Minify</li>
+          <li>Regex Tester</li>
+          <li>Cron Explain</li>
+          <li>HMAC</li>
+          <li>Color Convert</li>
+          <li>HTTP Status Lookup</li>
+          <li>Slugify</li>
+          <li>HTML Escape</li>
+        </ul>
+      </div>
+      <div class="tier pro">
+        <h3>Pro</h3>
+        <p class="price">$5 one-time — all 44 tools</p>
+        <ul>
+          <li>Everything in Free, plus:</li>
+          <li>Semver Compare</li>
+          <li>Chmod Calculator</li>
+          <li>Text Diff</li>
+          <li>Number Base Convert</li>
+          <li>Lorem Ipsum Generator</li>
+          <li>Word Count</li>
+          <li>CIDR Calculator</li>
+          <li>Case Convert</li>
+          <li>Markdown TOC</li>
+          <li>Env Parser</li>
+          <li>IP Info</li>
+          <li>Password Strength</li>
+          <li>Data Size Convert</li>
+          <li>String Escape</li>
+          <li>NanoID Generator</li>
+          <li>CSV/JSON Convert</li>
+          <li>AES Encrypt/Decrypt</li>
+          <li>RSA Keygen</li>
+          <li>JWT Create</li>
+          <li>SQL Format</li>
+          <li>JSON Query</li>
+          <li>Epoch Convert</li>
+          <li>+ more</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>All 44 Tools</h2>
+    <div class="tool-grid">
+      <div class="tool-chip">UUID Generator</div>
+      <div class="tool-chip">Hash</div>
+      <div class="tool-chip">Base64</div>
+      <div class="tool-chip">Timestamp</div>
+      <div class="tool-chip">JWT Decode</div>
+      <div class="tool-chip">Random String</div>
+      <div class="tool-chip">URL Encode</div>
+      <div class="tool-chip">JSON Format</div>
+      <div class="tool-chip">Regex Test</div>
+      <div class="tool-chip">Cron Explain</div>
+      <div class="tool-chip">HMAC</div>
+      <div class="tool-chip">Color Convert</div>
+      <div class="tool-chip">HTTP Status</div>
+      <div class="tool-chip">Slugify</div>
+      <div class="tool-chip">HTML Escape</div>
+      <div class="tool-chip pro">Semver Compare <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Chmod Calc <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Text Diff <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Number Base <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Lorem Ipsum <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Word Count <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">CIDR Calc <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Case Convert <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Markdown TOC <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Env Parser <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">IP Info <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Password Strength <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Data Size <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">String Escape <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">NanoID <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">CSV/JSON <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Hex Encode <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Char Info <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Byte Count <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">JSON Diff <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">JWT Create <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">SQL Format <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">JSON Query <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Epoch Convert <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">AES Encrypt <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">AES Decrypt <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">RSA Keygen <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Scrypt Hash <span class="badge">PRO</span></div>
+      <div class="tool-chip pro">Regex Replace <span class="badge">PRO</span></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Made by <a href="https://github.com/hlteoh37">hlteoh37</a> | <a href="https://buymeacoffee.com/gl89tu25lp">Buy Me a Coffee</a> | <a href="https://github.com/hlteoh37/devutils-vscode">Source</a></p>
+  </div>
+</div>
+</body>
+</html>
