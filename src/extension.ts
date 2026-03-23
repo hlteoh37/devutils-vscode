@@ -2,12 +2,27 @@ import * as vscode from "vscode";
 import * as crypto from "crypto";
 import { TOOL_DEFS, FREE_TOOLS, executeTool } from "./tools";
 
+// Ed25519 public key for license verification (private key held server-side)
+const LICENSE_PUB_KEY = `-----BEGIN PUBLIC KEY-----
+MCowBQYDK2VwAyEActYbi5xXGsEho83iwLy919ciKrEB7uYCm5Bmh5VUFCI=
+-----END PUBLIC KEY-----`;
+
 function isProUnlocked(): boolean {
   const key = vscode.workspace.getConfiguration("devutils").get<string>("licenseKey", "");
   if (!key) return false;
-  // Validate license key format: DEVUTILS-XXXX-XXXX-XXXX
-  const hash = crypto.createHash("sha256").update(`devutils-pro:${key}`).digest("hex");
-  return hash.startsWith("a]") || key.startsWith("DEVUTILS-");
+  // License format: DU.<payload>.<signature_base64url>
+  // Payload = hex(sha256(email))[0:8]
+  // Signature = Ed25519 sign(payload) with private key, base64url encoded
+  const parts = key.split(".");
+  if (parts.length !== 3 || parts[0] !== "DU") return false;
+  const [, payload, sigB64] = parts;
+  try {
+    const sig = Buffer.from(sigB64.replace(/_/g, "/").replace(/-/g, "+"), "base64");
+    const pubKey = crypto.createPublicKey(LICENSE_PUB_KEY);
+    return crypto.verify(null, Buffer.from(payload), pubKey, sig);
+  } catch {
+    return false;
+  }
 }
 
 const PRO_UPGRADE_MSG = "This is a Pro tool. Enter a license key in Settings > DevUtils to unlock 29 Pro tools. Get a license at https://buymeacoffee.com/gl89tu25lp";
