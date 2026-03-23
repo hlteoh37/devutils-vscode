@@ -1,0 +1,122 @@
+{
+  "name": "devutils-vscode",
+  "displayName": "DevUtils — 44 Developer Utilities",
+  "description": "UUID, hash, base64, JWT, JSON, regex, timestamp, color converter and 36 more developer tools — right inside VS Code.",
+  "version": "0.1.0",
+  "publisher": "hlteoh37",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other",
+    "Formatters"
+  ],
+  "keywords": [
+    "uuid",
+    "hash",
+    "base64",
+    "jwt",
+    "json",
+    "regex",
+    "developer tools",
+    "utilities",
+    "converter",
+    "encoder"
+  ],
+  "icon": "media/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hlteoh37/devutils-vscode"
+  },
+  "homepage": "https://github.com/hlteoh37/devutils-vscode",
+  "license": "MIT",
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "devutils.openPanel",
+        "title": "DevUtils: Open Tool Panel"
+      },
+      {
+        "command": "devutils.uuid",
+        "title": "DevUtils: Generate UUID"
+      },
+      {
+        "command": "devutils.hash",
+        "title": "DevUtils: Hash Text"
+      },
+      {
+        "command": "devutils.base64Encode",
+        "title": "DevUtils: Base64 Encode"
+      },
+      {
+        "command": "devutils.base64Decode",
+        "title": "DevUtils: Base64 Decode"
+      },
+      {
+        "command": "devutils.timestamp",
+        "title": "DevUtils: Timestamp Convert"
+      },
+      {
+        "command": "devutils.jwtDecode",
+        "title": "DevUtils: Decode JWT"
+      },
+      {
+        "command": "devutils.urlEncode",
+        "title": "DevUtils: URL Encode/Decode"
+      },
+      {
+        "command": "devutils.jsonFormat",
+        "title": "DevUtils: Format JSON"
+      },
+      {
+        "command": "devutils.jsonMinify",
+        "title": "DevUtils: Minify JSON"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "devutils",
+          "title": "DevUtils",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "devutils": [
+        {
+          "type": "webview",
+          "id": "devutils.toolPanel",
+          "name": "Tools"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "DevUtils",
+      "properties": {
+        "devutils.licenseKey": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "License key to unlock 29 Pro tools. [Get a Pro license](https://buymeacoffee.com/gl89tu25lp)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "npx @vscode/vsce package --no-dependencies",
+    "publish": "npx @vscode/vsce publish --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.130",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^2.15.0",
+    "cheerio": "^1.0.0-rc.12",
+    "typescript": "^5.4.5",
+    "undici": "^6.21.1",
+    "vsce": "^2.15.0"
+  }
+}
