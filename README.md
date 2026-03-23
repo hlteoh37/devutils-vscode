@@ -1,6 +1,19 @@
 # DevUtils for VS Code
 
+[![Version](https://img.shields.io/github/v/release/hlteoh37/devutils-vscode?style=flat-square)](https://github.com/hlteoh37/devutils-vscode/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+
 **44 developer utilities** right inside your editor. No context switching, no browser tabs.
+
+## Install
+
+Download the latest `.vsix` from [Releases](https://github.com/hlteoh37/devutils-vscode/releases), then:
+
+```
+code --install-extension devutils-vscode-0.1.0.vsix
+```
+
+Or in VS Code: `Ctrl+Shift+P` → "Install from VSIX" → select the file.
 
 ## Features
 
@@ -29,19 +42,21 @@ Select text in your editor and run from the Command Palette (`Ctrl+Shift+P`):
 
 Selected text is used as input. Result replaces the selection.
 
-## Install
-
-Search **DevUtils** in the VS Code Extensions marketplace, or:
-
-```
-ext install hlteoh37.devutils-vscode
-```
-
 ## Pro
 
-15 tools are free forever. Unlock all 29 Pro tools by entering a license key in Settings > DevUtils.
+15 tools are free forever. Unlock all 29 Pro tools with a license key ($5 one-time).
 
-[Get a Pro license](https://buymeacoffee.com/gl89tu25lp)
+**[Get a Pro license](https://buymeacoffee.com/gl89tu25lp)** → enter the key in Settings > DevUtils.
+
+## Also available as MCP Server
+
+Use the same 44 tools in Claude Desktop, Cursor, Windsurf, or any MCP client:
+
+```
+npx -y mcp-devutils
+```
+
+See [mcp-devutils on npm](https://www.npmjs.com/package/mcp-devutils).
 
 ## Support
 
